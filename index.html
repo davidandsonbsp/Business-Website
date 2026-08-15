@@ -201,27 +201,40 @@
     padding:.5rem .85rem;border-radius:999px;font-size:var(--step--1);font-weight:500;color:var(--ink-2)}
   .chip svg{width:15px;height:15px;color:var(--red)}
   .hero-media{position:relative}
-  .ph{position:relative;background:
-      radial-gradient(120% 120% at 30% 20%, #23211f 0%, #191817 60%);
+  .ph{position:relative;
+    background:linear-gradient(135deg,#221e1b 0%,#151210 42%,#241f1a 70%,#171310 100%);
+    background-size:220% 220%;animation:phShift 16s ease-in-out infinite;
     border:1px solid var(--line-ink);border-radius:calc(var(--radius) + 4px);overflow:hidden;
     display:flex;align-items:flex-end;color:#cbb79a}
+  .ph::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.06) 50%,transparent 62%);
+    transform:translateX(-120%);animation:phSheen 7.5s ease-in-out infinite}
+  @keyframes phShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes phSheen{0%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
   .ph::after{content:attr(data-ph);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     text-align:center;padding:1.5rem;font-family:"Inter",sans-serif;font-size:.82rem;letter-spacing:.06em;
     color:#8f836f;text-transform:uppercase}
   .hero-media .ph{aspect-ratio:4/5}
   .hero-badge{position:absolute;left:-14px;bottom:22px;background:var(--paper-2);border:1px solid var(--line);
-    box-shadow:var(--shadow);border-radius:14px;padding:.8rem 1rem;display:flex;gap:.7rem;align-items:center;max-width:80%}
+    box-shadow:var(--shadow);border-radius:14px;padding:.8rem 1rem;display:flex;gap:.7rem;align-items:center;max-width:80%;
+    z-index:2;animation:floaty 5s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   .hero-badge .dot{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;flex:none}
   .hero-badge .dot svg{width:20px;height:20px}
   .hero-badge b{display:block;font-size:.92rem}
   .hero-badge span{font-size:.78rem;color:var(--ink-2)}
 
   /* Marquee trust strip */
-  .strip{background:var(--ink);color:#e9e2d6}
-  .strip .wrap{display:flex;flex-wrap:wrap;gap:1.2rem 2.4rem;justify-content:center;padding-block:18px;
-    font-size:var(--step--1);letter-spacing:.06em}
-  .strip span{display:inline-flex;align-items:center;gap:.5rem;color:#cbb79a}
+  .strip{background:var(--ink);color:#e9e2d6;overflow:hidden}
+  .strip .marquee{display:flex;padding-block:18px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .strip .marquee-track{display:flex;flex:none;white-space:nowrap;font-size:var(--step--1);letter-spacing:.06em;
+    animation:marquee 34s linear infinite}
+  .strip .marquee:hover .marquee-track{animation-play-state:paused}
+  .strip span{display:inline-flex;align-items:center;gap:.5rem;color:#cbb79a;flex:none;margin-right:2.6rem}
   .strip svg{width:15px;height:15px;color:var(--brass)}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* Generic section head */
   .head{max-width:60ch}
@@ -352,7 +365,15 @@
   /* Scroll reveal */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  .menu-grid > .reveal:nth-child(2){transition-delay:.08s}
+  .menu-grid > .reveal:nth-child(3){transition-delay:.16s}
+  .review-grid > .reveal:nth-child(2){transition-delay:.08s}
+  .review-grid > .reveal:nth-child(3){transition-delay:.16s}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .ph,.hero-badge,.strip .marquee-track{animation:none!important}
+    .ph::before{display:none}
+  }
 </style>
 </head>
 <body>
@@ -427,11 +448,17 @@
 
 <!-- ============ TRUST STRIP ============ -->
 <div class="strip" aria-label="Highlights">
-  <div class="wrap">
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Skin fades &amp; scissor work</span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Beard &amp; hot-towel shaves</span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> First cuts &amp; kids welcome</span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Designs — just ask</span>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Skin fades &amp; scissor work</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Beard &amp; hot-towel shaves</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> First cuts &amp; kids welcome</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Designs — just ask</span>
+      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Skin fades &amp; scissor work</span>
+      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Beard &amp; hot-towel shaves</span>
+      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> First cuts &amp; kids welcome</span>
+      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Designs — just ask</span>
+    </div>
   </div>
 </div>
 
