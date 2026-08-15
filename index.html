@@ -230,16 +230,11 @@
   /* hero image + badge removed — hero is centered text-only */
 
   /* Marquee trust strip */
-  .strip{background:var(--ink);color:#e9e2d6;overflow:hidden}
-  .strip .marquee{display:flex;padding-block:18px;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-  .strip .marquee-track{display:flex;flex:none;white-space:nowrap;font-size:var(--step--1);letter-spacing:.06em;
-    animation:marquee 34s linear infinite}
-  .strip .marquee:hover .marquee-track{animation-play-state:paused}
-  .strip span{display:inline-flex;align-items:center;gap:.5rem;color:#cbb79a;flex:none;margin-right:2.6rem}
+  .strip{background:var(--ink);color:#e9e2d6}
+  .strip .strip-row{display:flex;flex-wrap:wrap;gap:1rem 2.4rem;justify-content:center;padding-block:18px;
+    font-size:var(--step--1);letter-spacing:.06em}
+  .strip span{display:inline-flex;align-items:center;gap:.5rem;color:#cbb79a}
   .strip svg{width:15px;height:15px;color:var(--brass)}
-  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* Generic section head */
   .head{max-width:60ch}
@@ -385,7 +380,7 @@
   .review-grid > .reveal:nth-child(3){transition-delay:.16s}
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
-    .ph,.strip .marquee-track{animation:none!important}
+    .ph{animation:none!important}
     .ph::before{display:none}
   }
 </style>
@@ -469,17 +464,11 @@
 
 <!-- ============ TRUST STRIP ============ -->
 <div class="strip" aria-label="Highlights">
-  <div class="marquee">
-    <div class="marquee-track">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Skin fades &amp; scissor work</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Beard &amp; hot-towel shaves</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> First cuts &amp; kids welcome</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Designs — just ask</span>
-      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Skin fades &amp; scissor work</span>
-      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Beard &amp; hot-towel shaves</span>
-      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> First cuts &amp; kids welcome</span>
-      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Designs — just ask</span>
-    </div>
+  <div class="wrap strip-row">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Skin fades &amp; scissor work</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Beard &amp; hot-towel shaves</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> First cuts &amp; kids welcome</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Designs — just ask</span>
   </div>
 </div>
 
