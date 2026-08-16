@@ -356,7 +356,7 @@
   .map iframe{width:100%;height:100%;min-height:320px;border:0;display:block;filter:grayscale(.2) contrast(1.02)}
 
   /* Footer */
-  footer.site{background:var(--ink);color:#c7bfb2;padding-block:56px 120px}
+  footer.site{background:var(--ink);color:#c7bfb2;padding-block:56px 64px}
   .foot-grid{display:grid;gap:32px;grid-template-columns:1fr}
   @media(min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr}}
   footer .brand{color:#fff}
@@ -373,16 +373,6 @@
   .socials a{width:40px;height:40px;border:1px solid var(--line-ink);border-radius:11px;display:grid;place-items:center}
   .socials svg{width:18px;height:18px}
 
-  /* Sticky mobile book bar */
-  .bookbar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:color-mix(in srgb,var(--paper-2) 94%,transparent);
-    backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:.7rem 16px;
-    display:flex;gap:.7rem;align-items:center;justify-content:space-between;
-    transform:translateY(120%);transition:transform .25s ease}
-  .bookbar.show{transform:translateY(0)}
-  .bookbar .pw{font-size:.82rem;color:var(--ink-2);line-height:1.2}
-  .bookbar .pw b{display:block;color:var(--ink);font-size:.98rem;font-family:"Fraunces",serif}
-  .bookbar .btn{min-height:44px;padding:.6rem 1.1rem}
-  @media(min-width:900px){.bookbar{display:none}}
 
   /* Scroll reveal */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -459,11 +449,8 @@
       <p class="lead">David &amp; Sons is a family barbershop where dads, kids and grandpas all
         leave looking sharp. Book David in under a minute — no phone tag, no waiting on hold.</p>
       <div class="hero-cta">
-        <a class="btn" href="#book" data-book>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
-          Book with David
-        </a>
-        <a class="btn btn--ghost" href="#services">See the price list</a>
+        <a class="btn" href="#services">See the price list</a>
+        <a class="btn btn--ghost" href="#team">Meet David</a>
       </div>
       <div class="hero-trust">
         <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Walk-ins welcome</span>
@@ -625,9 +612,6 @@
             <span class="tag-pill">Kids' cuts</span>
             <span class="tag-pill">Custom designs</span>
           </div>
-          <div style="margin-top:1.4rem">
-            <a class="btn" href="#book" data-book><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg> Book David</a>
-          </div>
         </div>
       </div>
     </div>
@@ -719,10 +703,6 @@
           <!-- TODO: PHONE -->
           <div><b>Call the shop</b><p><a href="tel:+10000000000" style="color:var(--ink-2);text-decoration:underline">(000) 000-0000</a></p></div>
         </div>
-        <div class="info-row">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></span>
-          <div><b>Booking</b><p>Fastest way in — <a href="#book" data-book style="color:var(--red);font-weight:600;text-decoration:underline">book David online</a>.</p></div>
-        </div>
       </div>
       <div class="map reveal">
         <iframe title="Map to David &amp; Sons Barbershop, 1025 Cortelyou Rd" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -768,11 +748,6 @@
   </div>
 </footer>
 
-<!-- ============ STICKY MOBILE BOOK BAR ============ -->
-<div class="bookbar" id="bookbar">
-  <div class="pw"><b>Book with David</b>Online in about a minute</div>
-  <a class="btn" href="#book" data-book>Book now</a>
-</div>
 
 <script>
   // Year
@@ -814,16 +789,6 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
-  // Sticky mobile book bar: show after hero, hide near booking/footer
-  var bar = document.getElementById('bookbar'), hero = document.querySelector('.hero'), book = document.getElementById('book');
-  function onScroll(){
-    var past = window.scrollY > (hero.offsetHeight - 80);
-    var atBook = book.getBoundingClientRect().top < window.innerHeight && book.getBoundingClientRect().bottom > 0;
-    if(past && !atBook){ bar.classList.add('show'); } else { bar.classList.remove('show'); }
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll); onScroll();
 
   // NOTE: all [data-book] links currently point to #book. Replace href with THECUT_URL
   // once available so every "Book with David" opens David's live theCut calendar.
