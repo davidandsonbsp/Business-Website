@@ -767,6 +767,16 @@
   // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
 
+  // ── Booking link ───────────────────────────────────────────────────────────
+  // Paste David's theCut profile link between the quotes below and EVERY
+  // "Book with David" button goes live (opens theCut in a new tab). Until then,
+  // the buttons just scroll to the booking section instead of opening a blank tab.
+  var BOOKING_URL = ""; // e.g. "https://thecut.co/davids-username"
+  document.querySelectorAll('[data-book]').forEach(function(a){
+    if (BOOKING_URL) { a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener"; }
+    else { a.href = "#book"; a.removeAttribute("target"); }
+  });
+
   // Mobile slide-in nav
   var mb = document.getElementById('menuBtn'),
       drawer = document.getElementById('drawer'),
