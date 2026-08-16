@@ -313,6 +313,14 @@
     transform:translateY(101%);opacity:0;transition:transform .35s ease,opacity .35s ease}
   .work-tile:hover figcaption,.work-tile:focus-within figcaption{transform:none;opacity:1}
   @media (prefers-reduced-motion:reduce){.work-tile figcaption{transition:none}}
+  .follow{margin-top:2rem;display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.1rem;justify-content:center;text-align:center}
+  .follow > p{font-family:"Fraunces",serif;font-size:1.15rem;color:var(--ink)}
+  .follow-links{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center}
+  .follow-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;border:1.5px solid var(--line);
+    border-radius:999px;font-weight:600;font-size:.95rem;color:var(--ink);background:#fff;
+    transition:border-color .18s ease,color .18s ease,transform .18s ease}
+  .follow-btn:hover{border-color:var(--red);color:var(--red);transform:translateY(-1px)}
+  .follow-btn svg{width:18px;height:18px}
 
   /* Reviews */
   .reviews{background:var(--ink);color:#efe8dc}
@@ -626,6 +634,16 @@
       <figure class="work-tile"><div class="ph" data-ph="Cut 3"></div><figcaption>Kids' first cut</figcaption></figure>
       <figure class="work-tile"><div class="ph" data-ph="Cut 4"></div><figcaption>Custom design</figcaption></figure>
     </div>
+
+    <div class="follow reveal">
+      <p>See a fresh cut every week —</p>
+      <div class="follow-links">
+        <!-- TODO: real Instagram handle -->
+        <a class="follow-btn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Instagram</a>
+        <!-- TODO: real TikTok handle -->
+        <a class="follow-btn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.26 2.02 1.5 3.42 3.5 3.6v2.36c-1.16.08-2.32-.28-3.5-1.03v6.5c0 3.24-2.3 5.37-5.32 5.37C8.02 20.2 6 18.1 6 15.34c0-2.86 2.36-4.98 5.46-4.6v2.52c-.42-.13-.9-.2-1.36-.13-1.1.17-1.82 1-1.72 2.16.1 1.1 1 1.92 2.12 1.82 1.18-.1 1.9-1.02 1.9-2.32V3h2.1z"/></svg> TikTok</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -712,9 +730,10 @@
         <p style="margin-top:1rem;max-width:34ch">A family barbershop on Cortelyou Road. Fresh cuts for
           every generation — book David and come as you are.</p>
         <div class="socials">
-          <!-- TODO: real Instagram -->
+          <!-- TODO: real Instagram handle -->
           <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#book" data-book aria-label="Book on theCut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></a>
+          <!-- TODO: real TikTok handle -->
+          <a href="#" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.26 2.02 1.5 3.42 3.5 3.6v2.36c-1.16.08-2.32-.28-3.5-1.03v6.5c0 3.24-2.3 5.37-5.32 5.37C8.02 20.2 6 18.1 6 15.34c0-2.86 2.36-4.98 5.46-4.6v2.52c-.42-.13-.9-.2-1.36-.13-1.1.17-1.82 1-1.72 2.16.1 1.1 1 1.92 2.12 1.82 1.18-.1 1.9-1.02 1.9-2.32V3h2.1z"/></svg></a>
         </div>
       </div>
       <div>
